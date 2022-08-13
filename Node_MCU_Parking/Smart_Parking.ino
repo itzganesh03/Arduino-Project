@@ -7,7 +7,7 @@ ESP8266WiFiMulti WiFiMulti;
 #define TRIGGER_PIN D1
 #define ECHO_PIN   D2
 const char* ssid     ="POCO F1";
-const char* password ="viraj@123";
+const char* password ="*******";
 const char* host = "http://smartparking.epizy.com/";
 WiFiClient client;
 String url;
