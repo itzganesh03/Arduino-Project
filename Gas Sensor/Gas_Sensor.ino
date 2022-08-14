@@ -1,38 +1,26 @@
+#define MQ2pin (0)
 
+float sensorValue;  //variable to store sensor value
 
-int redLed = 12;
-int greenLed = 11;
-int buzzer = 10;
-int smokeA0 = A5;
-// Your threshold value
-int sensorThres = 400;
-
-void setup() {
-  pinMode(redLed, OUTPUT);
-  pinMode(greenLed, OUTPUT);
-  pinMode(buzzer, OUTPUT);
-  pinMode(smokeA0, INPUT);
-  Serial.begin(9600);
+void setup()
+{
+  Serial.begin(9600); // sets the serial port to 9600
+  Serial.println("Gas sensor warming up!");
+  delay(20000); // allow the MQ-6 to warm up
 }
 
-void loop() {
-  int analogSensor = analogRead(smokeA0);
-
-  Serial.print("Pin A0: ");
-  Serial.println(analogSensor);
-  // Checks if it has reached the threshold value
-  if (analogSensor > sensorThres)
+void loop()
+{
+  sensorValue = analogRead(MQ2pin); // read analog input pin 0
+  
+  Serial.print("Sensor Value: ");
+  Serial.print(sensorValue);
+  
+  if(sensorValue > 300)
   {
-    digitalWrite(redLed, HIGH);
-    digitalWrite(greenLed, LOW);
-    tone(buzzer, 1000, 200);
+    Serial.print(" | Smoke detected!");
   }
-  else
-  {
-    digitalWrite(redLed, LOW);
-    digitalWrite(greenLed, HIGH);
-    noTone(buzzer);
-  }
-  delay(100);
+  
+  Serial.println("");
+  delay(2000); // wait 2s for next reading
 }
-SCHEMATICS
