@@ -15,6 +15,7 @@ void loop()
   
   Serial.print("Sensor Value: ");
   Serial.print(sensorValue);
+  Serial.print(GasValue);
   
   if(sensorValue > 300)
   {
